@@ -1,15 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { getStoreBuilder, StoreBuilder } from 'vuex-typex';
+import { TasksState } from './modules/tasks';
 
-Vue.use(Vuex)
+// Anti-treeshaking
+import './modules/tasks';
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+export interface RootState {
+  tasks: TasksState,
+}
+
+const rootStoreBuilder:StoreBuilder<RootState> = getStoreBuilder<RootState>();
+
+export default root;
