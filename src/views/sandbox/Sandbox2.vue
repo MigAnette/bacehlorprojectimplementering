@@ -9,7 +9,8 @@
       <form-reminder-selector @changeReminder="changeReminder" :reminders="reminders">
 
       </form-reminder-selector>
-      
+    
+      <form-add-category :categories="categories"></form-add-category>
       
       </v-container>
 </template>
@@ -18,11 +19,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import FormAddNote from '@/components/FormAddNote.vue';
 import FormReminderSelector from '@/components/FormReminderSelector.vue';
+import FormAddCategory from '@/components/FormAddCategory.vue';
 
 @Component({
   components: {
     FormAddNote,
-    FormReminderSelector
+    FormReminderSelector,
+    FormAddCategory,
     }
 })
 
@@ -30,6 +33,13 @@ export default class Sandbox2 extends Vue {
   sandboxes: string[] = ["Sandbox1", "Sandbox2", "Sandbox3"];
   
   reminders: string[] = ["I dag", "I morgen", "Næste uge", 'Tilpas'];
+
+  categories: {name: string; color: string}[]=[
+    {name: 'Arbejde', color: 'blue'},
+    {name: 'Pligter', color: 'magenta'},
+    {name: 'Fritid', color: 'green'},
+    {name: 'Eventyr', color: 'yellow'},
+  ]
 
   changeNote(note: string){
     console.log(`test ${note}`);
