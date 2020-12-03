@@ -12,9 +12,9 @@
 
     Sandbox3
 
-    <form-title addTitle="" changeTitle=""> </form-title>
+    <form-title addTitle="" @changeTitle="changeTitle"> </form-title>
 
-    <form-start-and-finish addStartTime="13:00"></form-start-and-finish>
+    <form-start-and-finish menuLabel="Start time" @saveTime="saveStartTime" :addStartTime="startTime"></form-start-and-finish>
   </v-container>
 </template>
 
@@ -32,8 +32,14 @@ import FormStartAndFinish from "@/components/FormStartAndFinish.vue";
 export default class Sandbox3 extends Vue {
   sandboxes: string[] = ["Sandbox1", "Sandbox2", "Sandbox3"];
 
+  startTime = "14:19"
+
   changeTitle(title: string) {
     console.log(title);
+  }
+
+  saveStartTime(time: string) {
+    console.log(time);
   }
 }
 </script>
