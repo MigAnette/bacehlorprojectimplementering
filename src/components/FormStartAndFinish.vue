@@ -5,7 +5,6 @@
       v-model="menu2"
       :close-on-content-click="false"
       :nudge-right="40"
-      :return-value.sync="time"
       transition="scale-transition"
       offset-y
       max-width="290px"
@@ -25,7 +24,7 @@
         v-if="menu2"
         v-model="time"
         full-width
-        @click:minute="$refs.menu.save(time)"
+        @click:minute="saveTime"
         format="24hr"
       ></v-time-picker>
     </v-menu>
@@ -39,18 +38,24 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class FormStartAndFinish extends Vue {
   @Prop({})
   menuLabel!: string;
+
   @Prop({})
   startTime!: boolean;
 
   @Prop({})
   finishTime!: boolean;
-
+ 
   @Prop({})
   addStartTime!: number;
 
   menu2 = false;
 
   time = this.addStartTime;
+
+  saveTime() {
+    // $refs.menu.save(time)
+    this.$emit('saveTime', this.time);
+  }
 }
 </script>
  

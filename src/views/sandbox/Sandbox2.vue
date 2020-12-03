@@ -10,7 +10,7 @@
 
       </form-reminder-selector>
     
-      <form-add-category :categories="categories"></form-add-category>
+      <form-add-category @selectedCategory="selectedCategory" :chosenCategory="categories[1]" categoryName="Tilføj kategori" :categories="categories"></form-add-category>
       
       </v-container>
 </template>
@@ -46,6 +46,10 @@ export default class Sandbox2 extends Vue {
   }
   changeReminder(item: string){
     console.log(`test ${item}`);
+  }
+
+  selectedCategory(category: {name: string; color: string}) {
+    console.log(`${category.name} ${category.color}`);
   }
 
 }
