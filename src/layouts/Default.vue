@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-bottom-navigation fixed grow>
+    <v-bottom-navigation app fixed grow>
       <v-btn v-for="mainlink in mainLinks" :key="mainlink.id" :to="{name: mainlink.route}" :value="mainlink.value">
         <span> {{ mainlink.value }} </span>
         <v-icon> {{ mainlink.icon }} </v-icon>
