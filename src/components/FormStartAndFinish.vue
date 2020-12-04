@@ -34,18 +34,28 @@
 <script lang='ts'>
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component({})
+@Component({
+  
+})
 export default class FormStartAndFinish extends Vue {
-  @Prop({})
+  @Prop({
+
+  })
   menuLabel!: string;
 
-  @Prop({})
+  @Prop({
+
+  })
   startTime!: boolean;
 
-  @Prop({})
+  @Prop({
+
+  })
   finishTime!: boolean;
  
-  @Prop({})
+  @Prop({
+
+  })
   addStartTime!: number;
 
   menu2 = false;

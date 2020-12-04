@@ -12,6 +12,8 @@
     
       <form-add-category @selectedCategory="selectedCategory" :chosenCategory="categories[1]" categoryName="Tilføj kategori" :categories="categories"></form-add-category>
       
+      <form-repeat-task @chosenDaily="chosenDaily" @changedDate="changedDate" @changedWeekday="changedWeekday"></form-repeat-task>
+
       </v-container>
 </template>
 
@@ -20,16 +22,18 @@ import { Component, Vue } from 'vue-property-decorator';
 import FormAddNote from '@/components/FormAddNote.vue';
 import FormReminderSelector from '@/components/FormReminderSelector.vue';
 import FormAddCategory from '@/components/FormAddCategory.vue';
+import FormRepeatTask from '@/components/FormRepeatTask.vue';
 
 @Component({
   components: {
     FormAddNote,
     FormReminderSelector,
     FormAddCategory,
+    FormRepeatTask,
     }
 })
-
 export default class Sandbox2 extends Vue {
+
   sandboxes: string[] = ["Sandbox1", "Sandbox2", "Sandbox3"];
   
   reminders: string[] = ["I dag", "I morgen", "Næste uge", 'Tilpas'];
@@ -48,8 +52,22 @@ export default class Sandbox2 extends Vue {
     console.log(`test ${item}`);
   }
 
-  selectedCategory(category: {name: string; color: string}) {
+  selectedCategory(category: { name: string; color: string }) {
     console.log(`${category.name} ${category.color}`);
+  }
+
+  changedDate(date: { date: string; repeat: string }) {
+    console.log(`sandbox ${date.date} ${date.repeat}`);
+  }
+
+  changedWeekday(week: { weekday: string; repeat: string }) {
+    console.log(`sandbox ${week.weekday} ${week.repeat}`);
+    
+  }
+
+  chosenDaily(repeat: string) {
+    console.log(`sandbox ${repeat}`);
+    
   }
 
 }
