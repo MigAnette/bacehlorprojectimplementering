@@ -33,11 +33,16 @@ export default class FormRepeatTask extends Vue {
   })
   chosenWeekday!: string;
 
+  @Prop({
+
+  })
+  chosenRepeat!: string;
+
   weekDays: string[] = [ "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag" ];
   selectedWeekday = this.chosenWeekday ? this.chosenWeekday : '';
 
   repeats: string[] = [ "Enkeltstående", "Daglig", "Ugentlig" ];
-  selectedRepeat = 'Enkeltstående';
+  selectedRepeat = this.chosenRepeat ? this.chosenRepeat : '';
 
   changedDate(date: string) {
     this.$emit('changedDate', { date: date, repeat: this.selectedRepeat });

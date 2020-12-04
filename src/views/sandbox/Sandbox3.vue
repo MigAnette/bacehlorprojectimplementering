@@ -15,6 +15,8 @@
     <form-title addTitle="" @changeTitle="changeTitle"> </form-title>
 
     <form-start-and-finish menuLabel="Start time" @saveTime="saveStartTime" :addStartTime="startTime"></form-start-and-finish>
+
+    <form-energy-level></form-energy-level>
   </v-container>
 </template>
 
@@ -22,11 +24,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import FormTitle from "@/components/FormTitle.vue";
 import FormStartAndFinish from "@/components/FormStartAndFinish.vue";
+import FormEnergyLevel from "@/components/FormEnergyLevel.vue";
 
 @Component({
   components: {
     FormTitle,
     FormStartAndFinish,
+    FormEnergyLevel,
   },
 })
 export default class Sandbox3 extends Vue {
