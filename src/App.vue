@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-container>
     <component :is="layout"></component>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
