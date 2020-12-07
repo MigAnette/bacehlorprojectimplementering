@@ -14,7 +14,9 @@
 
     <form-title addTitle="" @changeTitle="changeTitle"> </form-title>
 
-    <form-start-and-finish menuLabel="Start time" @saveTime="saveStartTime" :addStartTime="startTime"></form-start-and-finish>
+    <form-start-and-finish addTime="10:24" menuLabel="Start time" @saveTime="saveStartTime" :addStartTime="startTime"></form-start-and-finish>
+
+    <form-energy-level :changedEnergyLevel="1" changedEnergyOutcome="positive" @energyLevel="sendEnergyLevel"></form-energy-level>
   </v-container>
 </template>
 
@@ -22,11 +24,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import FormTitle from "@/components/FormTitle.vue";
 import FormStartAndFinish from "@/components/FormStartAndFinish.vue";
+import FormEnergyLevel from "@/components/FormEnergyLevel.vue";
 
 @Component({
   components: {
     FormTitle,
     FormStartAndFinish,
+    FormEnergyLevel,
   },
 })
 export default class Sandbox3 extends Vue {
@@ -40,6 +44,11 @@ export default class Sandbox3 extends Vue {
 
   saveStartTime(time: string) {
     console.log(time);
+  }
+
+  sendEnergyLevel(value: {energyLevel: number; energyOutcome: string}) {
+    console.log(`${value.energyLevel} ${value.energyOutcome}`);
+    
   }
 }
 </script>

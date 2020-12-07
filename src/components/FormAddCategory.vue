@@ -38,7 +38,7 @@ export default class FormAddCategory extends Vue {
   categoryName!: string;
   
   @Prop({
-    
+    required: true,
   })
   chosenCategory!: {name: string; color: string};
 

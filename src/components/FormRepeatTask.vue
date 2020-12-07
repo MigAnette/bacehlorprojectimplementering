@@ -24,20 +24,25 @@ import SingleEvent from '@/components/repeatTask/SingleEvent.vue';
 export default class FormRepeatTask extends Vue {
 
   @Prop({
-    
+    required: true,
   })
   chosenSingleDate!: string;
 
   @Prop({
-    
+    required: true,
   })
   chosenWeekday!: string;
+
+  @Prop({
+    required: true,
+  })
+  chosenRepeat!: string;
 
   weekDays: string[] = [ "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag" ];
   selectedWeekday = this.chosenWeekday ? this.chosenWeekday : '';
 
   repeats: string[] = [ "Enkeltstående", "Daglig", "Ugentlig" ];
-  selectedRepeat = 'Enkeltstående';
+  selectedRepeat = this.chosenRepeat ? this.chosenRepeat : '';
 
   changedDate(date: string) {
     this.$emit('changedDate', { date: date, repeat: this.selectedRepeat });

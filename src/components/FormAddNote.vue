@@ -17,7 +17,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class FormAddNote extends Vue {
-  @Prop({})
+  @Prop({
+    required: true,
+  })
   addNote!: string;
 
   note = this.addNote;

@@ -12,7 +12,7 @@
     
       <form-add-category @selectedCategory="selectedCategory" :chosenCategory="categories[1]" categoryName="Tilføj kategori" :categories="categories"></form-add-category>
       
-      <form-repeat-task @chosenDaily="chosenDaily" @changedDate="changedDate" @changedWeekday="changedWeekday"></form-repeat-task>
+      <form-repeat-task :chosenRepeat="'Enkeltstående'" @chosenDaily="chosenDaily" @changedDate="changedDate" @changedWeekday="changedWeekday"></form-repeat-task>
 
       </v-container>
 </template>
