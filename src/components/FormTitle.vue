@@ -12,7 +12,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class FormTitle extends Vue {
   @Prop({
-
+    required: true,
   })
   addTitle!: string;
 

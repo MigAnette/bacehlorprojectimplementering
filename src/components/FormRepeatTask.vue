@@ -24,17 +24,17 @@ import SingleEvent from '@/components/repeatTask/SingleEvent.vue';
 export default class FormRepeatTask extends Vue {
 
   @Prop({
-    
+    required: true,
   })
   chosenSingleDate!: string;
 
   @Prop({
-    
+    required: true,
   })
   chosenWeekday!: string;
 
   @Prop({
-
+    required: true,
   })
   chosenRepeat!: string;
 

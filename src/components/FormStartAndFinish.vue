@@ -39,28 +39,18 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class FormStartAndFinish extends Vue {
   @Prop({
-
+    required: true,
   })
   menuLabel!: string;
-
-  @Prop({
-
-  })
-  startTime!: boolean;
-
-  @Prop({
-
-  })
-  finishTime!: boolean;
  
   @Prop({
-
+    required: true,
   })
-  addStartTime!: number;
+  addTime!: number;
 
   menu2 = false;
 
-  time = this.addStartTime;
+  time = this.addTime;
 
   saveTime() {
     // $refs.menu.save(time)
