@@ -1,20 +1,16 @@
 <template>
-  <v-row>
+  <v-row class="ma-0">
     <v-select :items="items" label="Vælg påmindelse" outlined @change="changeReminder"></v-select>
   </v-row>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class FormReminderSelector extends Vue {
-  @Prop({
-    required: true,
-  })
-  reminders!: string[];
-
-  items = this.reminders;
+  
+  items: string[] = ["I dag", "I morgen", "Næste uge", 'Tilpas'];
 
   changeReminder(item: string) {
     this.$emit("changeReminder", item);

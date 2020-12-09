@@ -6,7 +6,7 @@
 
       </form-add-note>
 
-      <form-reminder-selector @changeReminder="changeReminder" :reminders="reminders">
+      <form-reminder-selector @changeReminder="changeReminder">
 
       </form-reminder-selector>
     
@@ -35,15 +35,6 @@ import FormRepeatTask from '@/components/FormRepeatTask.vue';
 export default class Sandbox2 extends Vue {
 
   sandboxes: string[] = ["Sandbox1", "Sandbox2", "Sandbox3"];
-  
-  reminders: string[] = ["I dag", "I morgen", "Næste uge", 'Tilpas'];
-
-  categories: {name: string; color: string}[]=[
-    {name: 'Arbejde', color: 'blue'},
-    {name: 'Pligter', color: 'magenta'},
-    {name: 'Fritid', color: 'green'},
-    {name: 'Eventyr', color: 'yellow'},
-  ]
 
   changeNote(note: string){
     console.log(`test ${note}`);

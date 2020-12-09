@@ -6,16 +6,20 @@
     
     <certainty-dialog yesColor="red" noColor="#006685" btnText="Slet opgave" title="Slet din opgave" subTitle="Er du sikker på du vil slette?" @confirmAsk="logConsole"></certainty-dialog>
     
+    <task-dialog :updateBtn="true" buttonValue="mdi-pencil"></task-dialog>
+
     </div>
 </template>
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import CertaintyDialog from '@/components/CertaintyDialog.vue';
+import TaskDialog from '@/components/TaskDialog.vue';
 
 @Component({
   components: {
     CertaintyDialog,
+    TaskDialog,
   }
 })
 
