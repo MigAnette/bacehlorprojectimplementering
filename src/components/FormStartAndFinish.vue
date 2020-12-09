@@ -1,5 +1,4 @@
 <template>
-  <v-row>
     <v-menu
       ref="menu"
       v-model="menu2"
@@ -14,7 +13,8 @@
         <v-text-field
           v-model="time"
           :label="menuLabel"
-          prepend-icon="mdi-clock-time-four-outline"
+          :prepend-icon="icon"
+          outlined
           readonly
           v-bind="attrs"
           v-on="on"
@@ -28,7 +28,6 @@
         format="24hr"
       ></v-time-picker>
     </v-menu>
-  </v-row>
 </template>
 
 <script lang='ts'>
@@ -44,9 +43,14 @@ export default class FormStartAndFinish extends Vue {
   menuLabel!: string;
  
   @Prop({
-    required: true,
+
   })
   addTime!: number;
+
+  @Prop({
+
+  })
+  icon!: string;
 
   menu2 = false;
 
@@ -55,6 +59,7 @@ export default class FormStartAndFinish extends Vue {
   saveTime() {
     // $refs.menu.save(time)
     this.$emit('saveTime', this.time);
+    this.menu2 = false;
   }
 }
 </script>

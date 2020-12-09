@@ -1,6 +1,6 @@
 <template>
-  <v-row>
-    <v-select v-model="category" :items="categories" :label="categoryName" return-object outlined item-text="name" @change="selectedCategory">
+  <v-row class="ma-0">
+    <v-select v-model="category" :items="categories" label="Kategori" return-object outlined item-text="name" @change="selectedCategory">
           <template  v-slot:item="{ item, on, attrs }">
               <v-list-item v-bind="attrs" v-on="on">
                     <v-list-item-icon><v-icon :color="item.color"> mdi-circle </v-icon></v-list-item-icon>
@@ -27,18 +27,20 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class FormAddCategory extends Vue {
-  @Prop({
-    required: true, 
-  })
-  categories!: {name: string; color: string}[];
+  categories: {name: string; color: string}[] = [
+    {name: 'Arbejde', color: 'blue'},
+    {name: 'Pligter', color: 'magenta'},
+    {name: 'Fritid', color: 'green'},
+    {name: 'Eventyr', color: 'yellow'},
+  ];
 
   @Prop({
-    required: true,
+    
   })
   categoryName!: string;
   
   @Prop({
-    required: true,
+   
   })
   chosenCategory!: {name: string; color: string};
 

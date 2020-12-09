@@ -1,6 +1,6 @@
 <template>
-  <v-row>
-      <v-col cols="5">
+  <v-row class="ma-0">
+      <v-col cols="6">
         <v-text-field label="Sæt energi" @change="changeEnergyLevel" :prefix="energyPrefix" width="100" v-model="energyLevel" suffix="%" outlined type="number"></v-text-field>
       </v-col>
       <v-col>
@@ -20,12 +20,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 export default class FormEnergyLevel extends Vue {
   @Prop({
-    required: true,
+    
   })
   changedEnergyLevel!: number;
   
   @Prop({
-    required: true,
+    
   })
   changedEnergyOutcome!: string;
 
