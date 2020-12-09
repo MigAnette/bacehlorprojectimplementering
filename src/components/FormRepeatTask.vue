@@ -4,7 +4,7 @@
       <v-select label="Gentag" @change="chosenDaily" v-model="selectedRepeat" outlined :items="repeats"></v-select>
 
       <!-- SingleEvent hooked up to 'Enkeltstående' -->
-      <single-event v-if="selectedRepeat == 'Enkeltstående'" :chosenSingleDate="chosenSingleDate" @changedDate="changedDate"></single-event>
+      <single-event v-if="selectedRepeat == 'Enkeltstående'" :chosenSingleDate="chosenDay" @changedDate="changedDate"></single-event>
 
       <!-- A select to select which day of the week, weekly task should be on -->
       <v-select @change="changeWeekday" label="Vælg Dag" v-if="selectedRepeat == 'Ugentlig'" :items="weekDays" v-model="selectedWeekday"></v-select>
@@ -26,12 +26,7 @@ export default class FormRepeatTask extends Vue {
   @Prop({
     
   })
-  chosenSingleDate!: string;
-
-  @Prop({
-    
-  })
-  chosenWeekday!: string;
+  chosenDay!: string;
 
   @Prop({
   
@@ -39,10 +34,10 @@ export default class FormRepeatTask extends Vue {
   chosenRepeat!: string;
 
   weekDays: string[] = [ "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag" ];
-  selectedWeekday = this.chosenWeekday ? this.chosenWeekday : '';
+  selectedWeekday = this.chosenDay;
 
   repeats: string[] = [ "Enkeltstående", "Daglig", "Ugentlig" ];
-  selectedRepeat = this.chosenRepeat ? this.chosenRepeat : '';
+  selectedRepeat = this.chosenRepeat;
 
   changedDate(date: string) {
     this.$emit('changedDate', { date: date, repeat: this.selectedRepeat });

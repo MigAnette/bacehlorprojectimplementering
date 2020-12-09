@@ -56,7 +56,7 @@ export default class SingleEvent extends Vue {
   chosenSingleDate!: string;
 
   menu = false;
-  date =  this.chosenSingleDate ? new Date(this.chosenSingleDate).toISOString().substr(0, 10) : new Date().toISOString().substr(0, 10);
+  date =  this.chosenSingleDate;
 
   pickDate() {
     this.$emit('changedDate', this.date);

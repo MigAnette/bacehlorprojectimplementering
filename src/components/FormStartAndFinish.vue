@@ -54,7 +54,7 @@ export default class FormStartAndFinish extends Vue {
 
   menu2 = false;
 
-  time = this.addTime ? this.addTime : '';
+  time = this.addTime;
 
   saveTime() {
     // $refs.menu.save(time)

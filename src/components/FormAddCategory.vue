@@ -44,7 +44,7 @@ export default class FormAddCategory extends Vue {
   })
   chosenCategory!: {name: string; color: string};
 
-  category = this.chosenCategory ? this.chosenCategory : '';
+  category = this.chosenCategory;
 
   selectedCategory() {
     this.$emit('selectedCategory', this.category);

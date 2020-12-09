@@ -2,17 +2,13 @@
   <v-container>
       <v-row> <v-btn v-for="(sandbox, index) in sandboxes" :key="index" :to="{ name: sandbox }"> {{ sandbox }} </v-btn> </v-row>
       Sandbox2
-      <form-add-note @changeNote="changeNote" addNote="sss">
+      <form-add-note @changeNote="changeNote" addNote="sss"></form-add-note>
 
-      </form-add-note>
-
-      <form-reminder-selector @changeReminder="changeReminder">
-
-      </form-reminder-selector>
+      <form-reminder-selector @changeReminder="changeReminder"></form-reminder-selector>
     
-      <form-add-category @selectedCategory="selectedCategory" :chosenCategory="categories[1]" categoryName="Tilføj kategori" :categories="categories"></form-add-category>
+      <form-add-category @selectedCategory="selectedCategory" :chosenCategory="{name: '', color: ''}" categoryName="Tilføj kategori"></form-add-category>
       
-      <form-repeat-task :chosenRepeat="'Enkeltstående'" @chosenDaily="chosenDaily" @changedDate="changedDate" @changedWeekday="changedWeekday"></form-repeat-task>
+      <form-repeat-task :chosenDay="''" :chosenRepeat="'Enkeltstående'" @chosenDaily="chosenDaily" @changedDate="changedDate" @changedWeekday="changedWeekday"></form-repeat-task>
 
       </v-container>
 </template>

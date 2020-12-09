@@ -21,7 +21,8 @@ export default class FormTitle extends Vue {
   })
   label!: string;
 
-  title = this.addTitle;
+  title = this.addTitle ? this.addTitle : '';
+  
   public changeTitle() {
     this.$emit("changeTitle", this.title);
   }
