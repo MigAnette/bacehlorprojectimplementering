@@ -43,6 +43,7 @@ export default class FormAddStep extends Vue {
   }
 
   removeStep(index: number) {
+    this.$emit('changeSteps', this.steps);
     this.steps.splice(index, 1);
   }
 }

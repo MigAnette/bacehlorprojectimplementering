@@ -29,9 +29,7 @@ export default class Sandbox1 extends Vue {
 
   task: Task = {
     title: '',
-    steps: [
-      { title: '', done: false },
-    ],
+    steps: [],
     energyLevel: 1,
     energyOutcome: 'negative',
     startTime: '',

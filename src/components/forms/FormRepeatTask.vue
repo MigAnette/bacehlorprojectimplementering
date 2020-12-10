@@ -51,7 +51,7 @@ export default class FormRepeatTask extends Vue {
 
   chosenDaily() {
     if (this.selectedRepeat == 'Daglig') {
-      this.$emit('chosenDaily', { repeat: 'Daglig' });
+      this.$emit('chosenDaily', { date: 'daglig', repeat: 'Daglig' });
     }
   }
 
