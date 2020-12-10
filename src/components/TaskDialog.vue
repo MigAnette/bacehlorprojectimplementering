@@ -72,7 +72,7 @@ import FormAddNote from '@/components/forms/FormAddNote.vue';
 
 export interface Task {
   title: string;
-  steps: { title: string; done: boolean }[];
+  steps: { title?: string; done?: boolean }[];
   energyLevel: number;
   energyOutcome: string;
   repeat: string;
@@ -84,8 +84,8 @@ export interface Task {
     hour: number;
   };
   category: {
-    name: string;
-    color: string;
+    name?: string;
+    color?: string;
   };
   reminder?: string;
   note?: string;

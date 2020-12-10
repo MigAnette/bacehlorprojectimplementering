@@ -30,11 +30,7 @@ export default class Home extends Vue {
     },
     repeat: 'Enkeltstående',
     date: new Date().toISOString().substr(0, 10),
-    category: {
-      name: '',
-      color: '',
-    },
-    note: '',
+    category: {},
     done: false,
   }
 
