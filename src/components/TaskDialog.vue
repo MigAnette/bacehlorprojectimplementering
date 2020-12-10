@@ -9,7 +9,7 @@
     <v-card>
         <v-container>
 
-        <v-row class="ma-0" justify="end" @click="dialog = false">
+        <v-row class="ma-0" justify="end" @click="closeDialog">
             <v-btn icon large><v-icon>mdi-close</v-icon></v-btn>
         </v-row>
     
@@ -71,6 +71,7 @@ import FormReminderSelector from '@/components/forms/FormReminderSelector.vue';
 import FormAddNote from '@/components/forms/FormAddNote.vue';
 
 export interface Task {
+  id: string;
   title: string;
   steps: { title?: string; done?: boolean }[];
   energyLevel: number;
@@ -109,7 +110,7 @@ export interface Task {
 export default class TaskDialog extends Vue {
   dialog = false;
   @Prop({
-    required: true,
+  
   })
   task!: Task;
 
@@ -137,8 +138,12 @@ export default class TaskDialog extends Vue {
 
   handleTask() {
     this.$emit('handleTask', this.changedTask);
-    this.dialog = false;
+    this.closeDialog();
     console.log(this.changedTask);
+  }
+
+  closeDialog() {
+    this.dialog = false;
   }
 
   /**
