@@ -21,7 +21,7 @@ export default class FormAddNote extends Vue {
   })
   addNote!: string;
 
-  note = this.addNote;
+  note = this.addNote || '' ? this.addNote : '';
 
   changeNote() {
     this.$emit("changeNote", this.note);

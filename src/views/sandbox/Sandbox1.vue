@@ -8,6 +8,8 @@
     
     <task-dialog @handleTask="postTask" :updateBtn="true" buttonValue="mdi-pencil" :task="task"></task-dialog>
 
+    <task-card @clickCheck="taskDone" :task="task"></task-card>
+
     </div>
 </template>
 
@@ -16,11 +18,13 @@ import { Component, Vue } from 'vue-property-decorator';
 import CertaintyDialog from '@/components/CertaintyDialog.vue';
 import TaskDialog from '@/components/TaskDialog.vue';
 import { Task } from '@/components/TaskDialog.vue';
+import TaskCard from '@/components/TaskCard.vue';
 
 @Component({
   components: {
     CertaintyDialog,
     TaskDialog,
+    TaskCard,
   }
 })
 
@@ -28,24 +32,32 @@ export default class Sandbox1 extends Vue {
   sandboxes: string[] = ["Sandbox1", "Sandbox2", "Sandbox3"];
 
   task: Task = {
-    title: '',
-    steps: [],
-    energyLevel: 1,
+    id: '2',
+    title: 'Lav hjemmeside',
+    steps: [
+      { title: 'Trin 1', done: false },
+      { title: 'Trin 2', done: true },
+    ],
+    energyLevel: 36,
     energyOutcome: 'negative',
-    startTime: '',
-    finishTime: '',
+    startTime: '09:00',
+    finishTime: '15:01',
     diffTime: {
-      min: 0,
-      hour: 0,
+      min: 1,
+      hour: 6,
     },
-    repeat: 'Enkeltstående',
-    date: new Date().toISOString().substr(0, 10),
+    repeat: 'Daglig',
+    date: 'daglig',
     category: {
-      name: '',
-      color: '',
+      name: 'Arbejde',
+      color: '#2196F3',
     },
-    note: '',
     done: false,
+  }
+
+  taskDone(done: boolean) {
+    this.task.done = done;
+    console.log(done);
   }
 
   postTask(task: Task) {

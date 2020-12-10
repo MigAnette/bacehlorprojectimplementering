@@ -18,6 +18,7 @@ import db from '@/firebase/init';
 export default class Home extends Vue {
 
   task: Task = {
+    id: '1',
     title: '',
     steps: [],
     energyLevel: 1,
