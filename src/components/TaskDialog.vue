@@ -20,7 +20,7 @@
         
             <!-- Steps -->
             <v-row class="ma-0">
-                <p>her skal form add steps være</p>
+                <form-add-step @changeSteps="changeSteps" :taskSteps="changedTask.steps"></form-add-step>
             </v-row>
 
             <!-- Energy -->
@@ -61,13 +61,14 @@
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import BlueButton from '@/components/BlueButton.vue';
-import FormTitle from '@/components/FormTitle.vue';
-import FormEnergyLevel from '@/components/FormEnergyLevel.vue';
-import FormRepeatTask from '@/components/FormRepeatTask.vue';
-import FormStartAndFinish from '@/components/FormStartAndFinish.vue';
-import FormAddCategory from '@/components/FormAddCategory.vue';
-import FormReminderSelector from '@/components/FormReminderSelector.vue';
-import FormAddNote from '@/components/FormAddNote.vue';
+import FormTitle from '@/components/forms/FormTitle.vue';
+import FormAddStep from '@/components/forms/FormAddStep.vue';
+import FormEnergyLevel from '@/components/forms/FormEnergyLevel.vue';
+import FormRepeatTask from '@/components/forms/FormRepeatTask.vue';
+import FormStartAndFinish from '@/components/forms/FormStartAndFinish.vue';
+import FormAddCategory from '@/components/forms/FormAddCategory.vue';
+import FormReminderSelector from '@/components/forms/FormReminderSelector.vue';
+import FormAddNote from '@/components/forms/FormAddNote.vue';
 
 export interface Task {
   title: string;
@@ -75,7 +76,7 @@ export interface Task {
   energyLevel: number;
   energyOutcome: string;
   repeat: string;
-  date?: string;
+  date: string;
   startTime: string;
   finishTime: string;
   diffTime: {
@@ -95,6 +96,7 @@ export interface Task {
   components: {
     BlueButton,
     FormTitle,
+    FormAddStep,
     FormEnergyLevel,
     FormRepeatTask,
     FormStartAndFinish,
@@ -149,6 +151,15 @@ export default class TaskDialog extends Vue {
   }
 
   /**
+   * Steps
+   * Changes the array of steps
+   */
+  changeSteps(steps: { title: string; done: boolean }[]) {
+    this.changedTask.steps = steps;
+    console.log(steps);
+  }
+
+  /**
    * Energy
    * Changes level and outcome
    */
@@ -162,7 +173,7 @@ export default class TaskDialog extends Vue {
    * Repeat
    * Changes repeat and date
    */
-  changedRepeat(value: {date?: string; repeat: string}) {
+  changedRepeat(value: {date: string; repeat: string}) {
     this.changedTask.repeat = value.repeat;
     this.changedTask.date = value.date;
     console.log(`${value.date} ${value.repeat}`);

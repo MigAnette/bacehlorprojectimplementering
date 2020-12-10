@@ -15,10 +15,10 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
-import FormAddNote from '@/components/FormAddNote.vue';
-import FormReminderSelector from '@/components/FormReminderSelector.vue';
-import FormAddCategory from '@/components/FormAddCategory.vue';
-import FormRepeatTask from '@/components/FormRepeatTask.vue';
+import FormAddNote from '@/components/forms/FormAddNote.vue';
+import FormReminderSelector from '@/components/forms/FormReminderSelector.vue';
+import FormAddCategory from '@/components/forms/FormAddCategory.vue';
+import FormRepeatTask from '@/components/forms/FormRepeatTask.vue';
 
 @Component({
   components: {

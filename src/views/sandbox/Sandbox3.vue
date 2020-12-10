@@ -24,10 +24,10 @@
 
 <script lang='ts'>
 import { Component, Vue } from "vue-property-decorator";
-import FormTitle from "@/components/FormTitle.vue";
-import FormStartAndFinish from "@/components/FormStartAndFinish.vue";
-import FormEnergyLevel from "@/components/FormEnergyLevel.vue";
-import FormAddStep from '@/components/FormAddStep.vue';
+import FormTitle from "@/components/forms/FormTitle.vue";
+import FormStartAndFinish from "@/components/forms/FormStartAndFinish.vue";
+import FormEnergyLevel from "@/components/forms/FormEnergyLevel.vue";
+import FormAddStep from '@/components/forms/FormAddStep.vue';
 
 @Component({
   components: {
