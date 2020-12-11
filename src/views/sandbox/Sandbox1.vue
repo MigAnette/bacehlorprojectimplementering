@@ -17,7 +17,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import CertaintyDialog from '@/components/CertaintyDialog.vue';
 import TaskDialog from '@/components/TaskDialog.vue';
-import { Task } from '@/components/TaskDialog.vue';
+import { Task } from '@/lib/type';
 import TaskCard from '@/components/TaskCard.vue';
 
 @Component({

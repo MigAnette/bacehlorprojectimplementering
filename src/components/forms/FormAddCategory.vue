@@ -27,11 +27,11 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class FormAddCategory extends Vue {
-  categories: {name: string; color: string}[] = [
-    {name: 'Arbejde', color: 'blue'},
-    {name: 'Pligter', color: 'magenta'},
-    {name: 'Fritid', color: 'green'},
-    {name: 'Eventyr', color: 'yellow'},
+  categories: { name: string; color: string }[] = [
+    { name: 'Arbejde', color: '#3F51B5' },
+    { name: 'Pligter', color: '#0000ff' },
+    { name: 'Fritid', color: '#C506B2' },
+    { name: 'Rutine', color: '#205493' },
   ];
 
   @Prop({
