@@ -1,11 +1,11 @@
 <template>
   <v-card rounded class="rounded-lg" :color="taskColor" :style="{ 'border': cardBorder }" @click="clickCard">
         <v-row class="ma-0">
-            <v-card-title class="pl-2 py-0 ma-0 subtitle-1 font-weight-medium"> {{ task.title }} </v-card-title>
+            <v-card-title class="pl-2 py-0 ma-0 subtitle-1 white--text font-weight-medium"> {{ task.title }} </v-card-title>
             <v-icon color="white" v-if="task.reminder">mdi-bell</v-icon>
             <v-icon color="white" v-if="returnRepeat">mdi-repeat</v-icon>
             <v-spacer></v-spacer>
-            <v-card-subtitle class="ma-0 pr-2 pa-0"> {{ task.category.name }} </v-card-subtitle>
+            <v-card-subtitle class="ma-0 pr-2 pa-0 white--text"> {{ task.category.name }} </v-card-subtitle>
         </v-row>
 
       <!-- The white part of the card begins here: -->
@@ -19,9 +19,9 @@
             </v-col>
 
             <!-- Starttime and hours or minutes are here -->
-            <v-col class="pa-0" >           
+            <v-col class="pa-0" v-if="showTime.time">           
                 <p class="mb-0 mt-0"> {{ task.startTime }} </p>
-                <p class="mb-0"> {{ returnTime }} </p>
+                <p class="mb-0" v-if="showTime.diffTime"> {{ returnTime }} </p>
             </v-col>
 
             <!-- Shows steps if there are steps -->
@@ -34,7 +34,7 @@
 
             <!-- Energylevel -->
             <v-col>
-                <v-chip class="rounded-md" :color="returnEnergy.color"> {{ returnEnergy.level }} </v-chip>
+                <v-chip class="rounded-md white--text" :color="returnEnergy.color"> {{ returnEnergy.level }} </v-chip>
             </v-col>
 
         </v-row>
@@ -45,7 +45,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Task } from '@/components/TaskDialog.vue';
+import { Task } from '@/lib/type';
 
 @Component({
 })
@@ -64,7 +64,7 @@ export default class TaskCard extends Vue {
   /**
    * The color of the task is added here, to make it possible to change the color when the checkmark has been checked.
    */
-  taskColor = this.task.category.color;
+  taskColor = this.task.category.color ? this.task.category.color : '#006685';
 
   /**
    * The cardborder is made to be able to change the color dynamically.
@@ -80,7 +80,7 @@ export default class TaskCard extends Vue {
     if (this.task.done == true) {
       this.taskColor = 'grey';
       this.done = this.task.done;
-    }
+    } 
   }
 
   /**
@@ -136,12 +136,12 @@ export default class TaskCard extends Vue {
   get returnEnergy(): { color: string; level: string } {
     if (this.task.energyOutcome == 'negative') {
         return {
-          color: 'red',
+          color: '#cd2026',
           level: `- ${this.task.energyLevel}%`,
         }
     } else if (this.task.energyOutcome == 'positive') {
         return {
-          color: 'green',
+          color: '#2e8540',
           level: `+ ${this.task.energyLevel}%`,
         }
     } else {
@@ -175,6 +175,25 @@ export default class TaskCard extends Vue {
       return `${this.task.diffTime.min} min`;
     } else {
       return `${this.task.diffTime.hour} timer`;
+    }
+  }
+
+  get showTime() {
+    if (this.task.startTime && this.task.finishTime) {
+      return {
+        time: true,
+        diffTime: true,
+      };
+    } else if (this.task.finishTime == '') {
+      return {
+        time: true,
+        diffTime: false,
+      };
+    } else {
+      return {
+        time: false,
+        diffTime: false,
+      };
     }
   }
 }

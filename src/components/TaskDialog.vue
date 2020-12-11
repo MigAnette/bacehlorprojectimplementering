@@ -1,16 +1,16 @@
 <template>
   <v-dialog v-model="dialog">
     <template v-slot:activator="{ on }">
-        <v-btn v-if="plusBtn" right bottom outlined icon elevation="2" v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
-        <v-btn v-if="updateBtn" icon v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
-        <a v-if="textBtn" v-on="on" class="text-decoration-underline"> {{ buttonValue }} </a>
+          <v-btn v-if="plusBtn" right bottom outlined icon elevation="2" v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
+          <v-btn v-if="updateBtn" icon v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
+          <a v-if="textBtn" v-on="on" class="text-decoration-underline"> {{ buttonValue }} </a>
     </template>
 
     <v-card>
         <v-container>
 
-        <v-row class="ma-0" justify="end" @click="closeDialog">
-            <v-btn icon large><v-icon>mdi-close</v-icon></v-btn>
+        <v-row class="ma-0" justify="end">
+            <v-btn icon large @click="closeDialog"><v-icon>mdi-close</v-icon></v-btn>
         </v-row>
     
         <v-form>
@@ -69,29 +69,7 @@ import FormStartAndFinish from '@/components/forms/FormStartAndFinish.vue';
 import FormAddCategory from '@/components/forms/FormAddCategory.vue';
 import FormReminderSelector from '@/components/forms/FormReminderSelector.vue';
 import FormAddNote from '@/components/forms/FormAddNote.vue';
-
-export interface Task {
-  id: string;
-  title: string;
-  steps: { title?: string; done?: boolean }[];
-  energyLevel: number;
-  energyOutcome: string;
-  repeat: string;
-  date: string;
-  startTime: string;
-  finishTime: string;
-  diffTime: {
-    min: number;
-    hour: number;
-  };
-  category: {
-    name?: string;
-    color?: string;
-  };
-  reminder?: string;
-  note?: string;
-  done: boolean;
-}
+import { Task } from '@/lib/type';
 
 @Component({
   components: {
