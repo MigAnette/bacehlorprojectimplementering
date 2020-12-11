@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-card class="pa-2" color="#006685">
+      <v-row class="ma-0">
+        <v-card-title class="white--text pa-0 pb-1 ma-0">Godmorgen</v-card-title>
+      </v-row>
+      <v-row class="ma-0">
+          <energy-bar :energySpend="energyExpenditure"></energy-bar>
+      </v-row>
+    </v-card>
     <task-dialog @handleTask="postTask" :task="task" :plusBtn="true" buttonValue="mdi-plus"></task-dialog>
     <task-card class="my-3" v-for="task in tasks" :key="task.id" :task="task"></task-card>
   </div>
@@ -11,11 +19,13 @@ import TaskDialog from '@/components/TaskDialog.vue';
 import { Task } from '@/lib/type';
 import db from '@/firebase/init';
 import TaskCard from '@/components/TaskCard.vue';
+import EnergyBar from '@/components/EnergyBar.vue';
 
 @Component({
   components: {
     TaskDialog,
     TaskCard,
+    EnergyBar,
   }
 })
 

@@ -8,8 +8,15 @@
     
     <task-dialog @handleTask="postTask" :updateBtn="true" buttonValue="mdi-pencil" :task="task"></task-dialog>
 
-    <task-card @clickCheck="taskDone" :task="task"></task-card>
+    <task-card class="mb-7" @clickCheck="taskDone" :task="task"></task-card>
 
+    <v-card class="pa-2" color="#006685">
+      <energy-bar @energyIsLow="showText" :energySpend="60"></energy-bar>
+      <v-row>
+        <v-icon :color="colorIcon">mdi-exclamation-thick</v-icon>
+        <p v-if="showWarning">Warning take care of yourself today</p>
+      </v-row>
+    </v-card>
     </div>
 </template>
 
@@ -19,12 +26,14 @@ import CertaintyDialog from '@/components/CertaintyDialog.vue';
 import TaskDialog from '@/components/TaskDialog.vue';
 import { Task } from '@/lib/type';
 import TaskCard from '@/components/TaskCard.vue';
+import EnergyBar from '@/components/EnergyBar.vue';
 
 @Component({
   components: {
     CertaintyDialog,
     TaskDialog,
     TaskCard,
+    EnergyBar,
   }
 })
 
@@ -53,6 +62,16 @@ export default class Sandbox1 extends Vue {
       color: '#2196F3',
     },
     done: false,
+  }
+
+  showWarning = false;
+  colorIcon = '';
+
+  showText(energy: { color: string; low: boolean }) {
+    this.showWarning = energy.low;
+    this.colorIcon = energy.color;
+    console.log(`${energy.color} ${energy.low}`);
+    
   }
 
   taskDone(done: boolean) {
