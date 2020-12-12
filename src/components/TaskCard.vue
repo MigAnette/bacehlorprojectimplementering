@@ -85,16 +85,15 @@ export default class TaskCard extends Vue {
 
   /**
    * clickCheck changes the color and the done, and emits the boolean.
-   * 
-   * The button is supposed to turn back to false and change the color, if one wants that.
-   * Currently however it is not doing that. 
-   * 
-   * If you have any ideas on how to do this, please add it, and comment the 
    */
   clickCheck() {
-    this.done = true;
+    this.done = !this.done;
+    if (this.done == true) {
+      this.taskColor = 'grey';
+    } else {
+      this.taskColor = this.task.category.color ? this.task.category.color : '#006685';
+    }
     this.$emit('clickCheck', this.done);
-    this.taskColor = 'grey';
     // console.log(this.done);
     
   }
@@ -104,7 +103,7 @@ export default class TaskCard extends Vue {
    */
   clickCard() {
     this.$emit('clickCard', this.task);
-    console.log('klikket');
+    console.log(`klikket ${this.task.id}`);
   }
 
   /**

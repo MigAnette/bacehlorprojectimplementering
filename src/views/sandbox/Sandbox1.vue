@@ -8,7 +8,8 @@
     
     <task-dialog @handleTask="postTask" :updateBtn="true" buttonValue="mdi-pencil" :task="task"></task-dialog>
 
-    <task-card class="mb-7" @clickCheck="taskDone" :task="task"></task-card>
+    <task-card @clickCard="openDialog" class="mb-7" @clickCheck="taskDone" :task="task"></task-card>
+    <open-task-dialog @closeDialog="closeDialog" @stepDone="stepDone" :task="openTask" :openDialog="dialog"></open-task-dialog>
 
     <v-card class="pa-2" color="#006685">
       <energy-bar @energyIsLow="showText" :energySpend="60"></energy-bar>
@@ -27,6 +28,7 @@ import TaskDialog from '@/components/TaskDialog.vue';
 import { Task } from '@/lib/type';
 import TaskCard from '@/components/TaskCard.vue';
 import EnergyBar from '@/components/EnergyBar.vue';
+import OpenTaskDialog from '@/components/OpenTaskDialog.vue';
 
 @Component({
   components: {
@@ -34,6 +36,7 @@ import EnergyBar from '@/components/EnergyBar.vue';
     TaskDialog,
     TaskCard,
     EnergyBar,
+    OpenTaskDialog,
   }
 })
 
@@ -55,8 +58,8 @@ export default class Sandbox1 extends Vue {
       min: 1,
       hour: 6,
     },
-    repeat: 'Daglig',
-    date: 'daglig',
+    repeat: 'Ugentlig',
+    date: 'Mandag',
     category: {
       name: 'Arbejde',
       color: '#2196F3',
@@ -64,8 +67,24 @@ export default class Sandbox1 extends Vue {
     done: false,
   }
 
+  stepDone(step: { index: number; done: boolean}) {
+    this.task.steps[step.index].done = step.done;
+  }
+
   showWarning = false;
   colorIcon = '';
+
+  dialog = false;
+  openTask = {};
+  openDialog(task: Task) {
+    this.dialog = true;
+    this.openTask = task;
+    console.log(this.openTask);
+  }
+
+  closeDialog(close: boolean) {
+    this.dialog = close;
+  }
 
   showText(energy: { color: string; low: boolean }) {
     this.showWarning = energy.low;

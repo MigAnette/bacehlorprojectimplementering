@@ -2,9 +2,8 @@
   <v-dialog v-model="dialog" persistent :max-width="400">
 
     <template v-slot:activator="{ on }">
-        <v-btn v-on="on">
+        <v-btn v-on="on" icon>
           <v-icon v-if="btnIcon"> {{ btnIcon }} </v-icon>
-          <span>{{ btnText }}</span> 
         </v-btn>
     </template>
 
