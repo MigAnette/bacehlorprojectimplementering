@@ -13,9 +13,9 @@
 
     <v-card class="pa-2" color="#006685">
       <energy-bar @energyIsLow="showText" :energySpend="60"></energy-bar>
-      <v-row>
+      <v-row v-if="showWarning">
         <v-icon :color="colorIcon">mdi-exclamation-thick</v-icon>
-        <p v-if="showWarning">Warning take care of yourself today</p>
+        <p>Warning take care of yourself today</p>
       </v-row>
     </v-card>
     </div>
@@ -90,7 +90,6 @@ export default class Sandbox1 extends Vue {
     this.showWarning = energy.low;
     this.colorIcon = energy.color;
     console.log(`${energy.color} ${energy.low}`);
-    
   }
 
   taskDone(done: boolean) {

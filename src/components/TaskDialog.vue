@@ -16,41 +16,41 @@
         <v-form>
 
             <!-- Title -->
-            <form-title @changeTitle="changeTitle" :addTitle="changedTask.title" label="Titel"></form-title>
+            <form-title @changeTitle="changeTitle" :addTitle="task.title" label="Titel"></form-title>
         
             <!-- Steps -->
             <v-row class="ma-0">
-                <form-add-step @changeSteps="changeSteps" :taskSteps="changedTask.steps"></form-add-step>
+                <form-add-step @changeSteps="changeSteps" :taskSteps="task.steps"></form-add-step>
             </v-row>
 
             <!-- Energy -->
-            <form-energy-level :changedEnergyLevel="changedTask.energyLevel" :changedEnergyOutcome="changedTask.energyOutcome" @energyLevel="changeEnergy"></form-energy-level>
+            <form-energy-level :changedEnergyLevel="task.energyLevel" :changedEnergyOutcome="task.energyOutcome" @energyLevel="changeEnergy"></form-energy-level>
         
             <!-- Repeat -->
-            <form-repeat-task @changedDate="changedRepeat" @changedWeekday="changedRepeat" @chosenDaily="changedRepeat" :chosenDay="task.date" chosenRepeat="Enkeltstående"></form-repeat-task> 
+            <form-repeat-task @changedDate="changedRepeat" @changedWeekday="changedRepeat" @chosenDaily="changedRepeat" :chosenDay="task.date" :chosenRepeat="task.repeat"></form-repeat-task> 
             
             <!-- Start and Finish -->
             <v-row class="ma-0">
                 <v-col>
-                    <form-start-and-finish menuLabel="Start" :addTime="changedTask.startTime" @saveTime="startTime"></form-start-and-finish>    
+                    <form-start-and-finish menuLabel="Start" :addTime="task.startTime" @saveTime="startTime"></form-start-and-finish>    
                 </v-col>
                 <v-col>
-                    <form-start-and-finish menuLabel="Slut" :addTime="changedTask.finishTime" @saveTime="finishTime"></form-start-and-finish>    
+                    <form-start-and-finish menuLabel="Slut" :addTime="task.finishTime" @saveTime="finishTime"></form-start-and-finish>    
                 </v-col>    
             </v-row>
 
             <!-- Category -->
-            <form-add-category :chosenCategory="changedTask.category" @selectedCategory="sendCategory"></form-add-category>
+            <form-add-category :chosenCategory="task.category" @selectedCategory="sendCategory"></form-add-category>
 
             <!-- Reminder -->
             <form-reminder-selector @changeReminder="changeReminder"></form-reminder-selector>
 
             <!-- Note -->
-            <form-add-note :addNote="changedTask.note" @changeNote="changeNote"></form-add-note>
+            <form-add-note :addNote="task.note" @changeNote="changeNote"></form-add-note>
         </v-form>
 
         <v-row class="ma-0" justify="center">
-            <blue-button @clickButton="handleTask" value="Opret"></blue-button>
+            <blue-button @clickButton="handleTask" :value="useButton"></blue-button>
         </v-row>
 
         </v-container>
@@ -87,6 +87,11 @@ import { Task } from '@/lib/type';
 
 export default class TaskDialog extends Vue {
   dialog = false;
+  @Prop({
+
+  })
+  useButton!: string;
+
   @Prop({
   
   })

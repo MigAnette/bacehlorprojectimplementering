@@ -46,6 +46,7 @@
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Task } from '@/lib/type';
+import db from '@/firebase/init';
 
 @Component({
 })
@@ -86,7 +87,7 @@ export default class TaskCard extends Vue {
   /**
    * clickCheck changes the color and the done, and emits the boolean.
    */
-  clickCheck() {
+  async clickCheck() {
     this.done = !this.done;
     if (this.done == true) {
       this.taskColor = 'grey';
@@ -94,8 +95,13 @@ export default class TaskCard extends Vue {
       this.taskColor = this.task.category.color ? this.task.category.color : '#006685';
     }
     this.$emit('clickCheck', this.done);
-    // console.log(this.done);
     
+    try {
+      await db.collection('tasks').doc(this.task.id).update({ done: this.done });
+    } catch (error) {
+      console.error(error.message);
+    }
+    // console.log(this.done);
   }
 
   /**

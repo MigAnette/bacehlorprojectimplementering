@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row v-for="(step, index) in steps" class="ma-0" :key="index" justify="center" align-content="center">
+    <v-row v-for="(step, index) in newSteps" class="ma-0" :key="index" justify="center" align-content="center">
         <v-text-field class="pt-2" prepend-icon="mdi-checkbox-blank-circle-outline" label="Tilføj Trin" @change="editStep(index)" v-model="step.title">
             <template v-slot:append>
                 <v-btn small icon color="red" @click="removeStep(index)"><v-icon>mdi-trash-can-outline</v-icon></v-btn>
@@ -26,7 +26,10 @@ export default class FormAddStep extends Vue {
   })
   taskSteps!: { title: string; done: boolean }[];
 
-  steps: { title: string; done: boolean }[] = this.taskSteps;
+  steps = this.taskSteps;
+
+  get newSteps() { return this.taskSteps }
+  set newSteps(value) {this.steps = value }
 
   addStep() {
     const step = {
