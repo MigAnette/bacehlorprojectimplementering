@@ -11,7 +11,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-text-field
-          v-model="time"
+          v-model="newTime"
           :label="menuLabel"
           :prepend-icon="icon"
           outlined
@@ -22,7 +22,7 @@
       </template>
       <v-time-picker
         v-if="menu2"
-        v-model="time"
+        v-model="newTime"
         full-width
         @click:minute="saveTime"
         format="24hr"
@@ -55,7 +55,8 @@ export default class FormStartAndFinish extends Vue {
   menu2 = false;
 
   time = this.addTime;
-
+  get newTime() { return this.addTime }
+  set newTime(value) { this.time = value }
   saveTime() {
     // $refs.menu.save(time)
     this.$emit('saveTime', this.time);

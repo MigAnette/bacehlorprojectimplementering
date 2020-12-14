@@ -5,11 +5,18 @@
         <v-card-title class="white--text pa-0 pb-1 ma-0">Godmorgen</v-card-title>
       </v-row>
       <v-row class="ma-0">
-          <energy-bar :energySpend="energyExpenditure"></energy-bar>
+          <energy-bar @energyIsLow="showText" :energySpend="energyExpenditure"></energy-bar>
+      </v-row>
+      <v-row v-if="showWarning">
+        <v-icon :color="colorIcon">mdi-exclamation-thick</v-icon>
+        <p class="white--text">Warning take care of yourself today</p>
       </v-row>
     </v-card>
-    <task-dialog @handleTask="postTask" :task="task" :plusBtn="true" buttonValue="mdi-plus"></task-dialog>
-    <task-card class="my-3" v-for="task in tasks" :key="task.id" :task="task"></task-card>
+    <task-dialog useButton="Opret" @handleTask="postTask" :task="task" :plusBtn="true" buttonValue="mdi-plus"></task-dialog>
+
+    <task-card @clickCard="openDialog" class="my-3" v-for="task in tasks" :key="task.id" :task="task"></task-card>
+    <open-task-dialog @closeDialog="closeDialog" :task="openTask" :openDialog="dialog"></open-task-dialog>
+
   </div>
 </template>
 
@@ -20,16 +27,39 @@ import { Task } from '@/lib/type';
 import db from '@/firebase/init';
 import TaskCard from '@/components/TaskCard.vue';
 import EnergyBar from '@/components/EnergyBar.vue';
+import OpenTaskDialog from '@/components/OpenTaskDialog.vue';
 
 @Component({
   components: {
     TaskDialog,
     TaskCard,
     EnergyBar,
+    OpenTaskDialog,
   }
 })
 
 export default class Home extends Vue {
+  showWarning = false;
+  colorIcon = '';
+
+  dialog = false;
+  openTask = {};
+
+  showText(energy: { color: string; low: boolean }) {
+    this.showWarning = energy.low;
+    this.colorIcon = energy.color;
+    console.log(`${energy.color} ${energy.low}`);
+  }
+
+  openDialog(task: Task) {
+    this.dialog = true;
+    this.openTask = task;
+    console.log(this.openTask);
+  }
+
+  closeDialog(close: boolean) {
+    this.dialog = close;
+  }
 
   tasks: Task[] = [];
 

@@ -6,14 +6,14 @@
             <v-row class="ma-0">
               <v-card-title class="ma-0 pa-0"> {{ task.title }} </v-card-title>
               <v-spacer></v-spacer>
-              <task-dialog :task="task" :updateBtn="true" buttonValue="mdi-pencil-outline"></task-dialog>
+              <task-dialog @handleTask="updateTask" useButton="Opdater" :task="task" :updateBtn="true" buttonValue="mdi-pencil-outline"></task-dialog>
             </v-row>
 
             <v-divider color="#006685"></v-divider>
 
             <v-row class="ma-0">
               <p> {{ task.startTime }} - {{ task.finishTime }} </p>
-              <v-chip class="rounded-lg white--text" :color="returnCategory.color"> {{ returnCategory.name }} </v-chip>
+              <v-chip class="rounded-lg white--text" :color="task.category ? task.category.color : '#006685'"> {{ task.category ? task.category.name : 'Ingen' }} </v-chip>
               <v-chip class="rounded-lg white--text" :color="returnEnergy.color"> {{ returnEnergy.level }} </v-chip>
             </v-row>
 
@@ -31,9 +31,9 @@
             </v-row>
 
             <v-col class="ma-0">
-              <v-card-subtitle class="ma-0 pa-0 font-italic">Trin</v-card-subtitle>
+              <v-card-subtitle v-if="showSteps" class="ma-0 pa-0 font-italic">Trin</v-card-subtitle>
               <v-row class="ma-0 ml-5" v-for="(step, index) in task.steps" :key="index">
-                <v-btn icon small outlined :color="step.done ? 'grey' : '#006685'" @click="stepDone(index, step.done)"><v-icon v-if="step.done">mdi-check</v-icon></v-btn>
+                <v-btn icon small outlined :color="step.done ? 'grey' : '#006685'" @click="stepDone(index, !step.done)"><v-icon v-if="step.done">mdi-check</v-icon></v-btn>
                 <p :class="{ 'text-decoration-line-through': step.done}">{{ step.title }}</p>
               </v-row>
             </v-col>
@@ -59,6 +59,7 @@ import { Task } from '@/lib/type';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import TaskDialog from '@/components/TaskDialog.vue';
 import CertaintyDialog from '@/components/CertaintyDialog.vue';
+import db from '@/firebase/init';
 
 @Component({
   components: {
@@ -78,8 +79,33 @@ export default class OpenTaskDialog extends Vue {
   })
   task!: Task;
 
-  deleteTask() {
+  openTask = this.task;
+
+  get showSteps() {
+    if (!Array.isArray(this.task.steps) || !this.task.steps.length) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  async updateTask(task: Task) {
+    try {
+      const parse = await db.collection('tasks').doc(task.id).set(task);
+      console.log(parse);
+    } catch (error) {
+      console.error(error.message);
+    }
+    console.log(task);
+  }
+
+  async deleteTask() {
     this.closeDialog();
+    try {
+      await db.collection('tasks').doc(this.task.id).delete();
+    } catch (error) {
+      console.error(error);
+    }
     console.log('slet opgave');
   }
 
@@ -89,21 +115,18 @@ export default class OpenTaskDialog extends Vue {
 
   stepDone(index: number, done: boolean) {
     this.$emit('stepDone', {index: index, done: !done}); // this should be changed for database update
-    console.log(index);
-  }
+    const steps = this.task.steps;
 
-  get returnCategory() {
-    if (this.task.category.color == undefined && this.task.category.name == undefined) {
-        return {
-          name: 'Ingen',
-          color: '#006685',
-        }
-    } else {
-        return {
-          name: this.task.category.name,
-          color: this.task.category.color,
-        }
+    steps[index].done = done;
+
+    console.log(steps);
+    
+    try {
+      db.collection('tasks').doc(this.task.id).update({steps: steps});
+    } catch (error) {
+      console.error(error);
     }
+    console.log(index);
   }
 
   get returnEnergy(): { color: string; level: string } {

@@ -1,7 +1,7 @@
 <template>
   <v-row class="ma-0">
     <v-textarea
-      v-model="note"
+      v-model="newNote"
       label="Tilføj note"
       auto-grow
       rows="1"
@@ -21,7 +21,10 @@ export default class FormAddNote extends Vue {
   })
   addNote!: string;
 
-  note = this.addNote || '' ? this.addNote : '';
+  note = this.addNote;
+
+  get newNote() { return this.addNote }
+  set newNote(value) { this.note = value }
 
   changeNote() {
     this.$emit("changeNote", this.note);

@@ -1,6 +1,6 @@
 <template>
 <v-row class="ma-0">
-    <v-text-field v-model="title" :label="label" @input="changeTitle"></v-text-field>
+    <v-text-field v-model="newTitle" :label="label" @input="changeTitle"></v-text-field>
 </v-row>
 </template>
 
@@ -20,8 +20,11 @@ export default class FormTitle extends Vue {
 
   })
   label!: string;
+  
+  title = this.addTitle;
 
-  title = this.addTitle ? this.addTitle : '';
+  get newTitle() { return this.addTitle }
+  set newTitle(value) { this.title = value } 
   
   public changeTitle() {
     this.$emit("changeTitle", this.title);
