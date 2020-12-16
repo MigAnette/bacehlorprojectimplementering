@@ -12,7 +12,7 @@
         <p class="white--text">Warning take care of yourself today</p>
       </v-row>
     </v-card>
-    <task-dialog useButton="Opret" @handleTask="postTask" :task="task" :plusBtn="true" buttonValue="mdi-plus"></task-dialog>
+    <task-dialog @emptyForm="emptyForm" useButton="Opret" @handleTask="postTask" :task="task" :plusBtn="true" buttonValue="mdi-plus"></task-dialog>
 
     <task-card @clickCard="openDialog" class="my-3" v-for="task in tasks" :key="task.id" :task="task"></task-card>
     <open-task-dialog @closeDialog="closeDialog" :task="openTask" :openDialog="dialog"></open-task-dialog>
@@ -78,6 +78,25 @@ export default class Home extends Vue {
     date: new Date().toISOString().substr(0, 10),
     category: {},
     done: false,
+  }
+
+  emptyForm() {
+    this.task = {
+      title: '',
+      steps: [],
+      energyLevel: 1,
+      energyOutcome: 'negative',
+      startTime: '',
+      finishTime: '',
+      diffTime: {
+        min: 0,
+        hour: 0,
+      },
+      repeat: 'Enkeltstående',
+      date: new Date().toISOString().substr(0, 10),
+      category: {},
+      done: false,
+    };
   }
 
   get energyExpenditure() {

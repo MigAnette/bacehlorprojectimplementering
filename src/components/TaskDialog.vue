@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog">
+  <v-dialog v-model="dialog" @click:outside="closeDialog">
     <template v-slot:activator="{ on }">
           <v-btn v-if="plusBtn" right bottom outlined icon elevation="2" v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
           <v-btn v-if="updateBtn" icon v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
@@ -126,6 +126,7 @@ export default class TaskDialog extends Vue {
   }
 
   closeDialog() {
+    this.$emit('emptyForm');
     this.dialog = false;
   }
 
