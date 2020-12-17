@@ -178,6 +178,8 @@ export default class TaskCard extends Vue {
   get returnTime() {
     if (this.task.diffTime.hour == 0) {
       return `${this.task.diffTime.min} min`;
+    } else if (this.task.diffTime.hour == 1) {
+      return `${this.task.diffTime.hour} time`;
     } else {
       return `${this.task.diffTime.hour} timer`;
     }

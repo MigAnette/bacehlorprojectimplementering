@@ -21,9 +21,9 @@ import { Component, Vue } from 'vue-property-decorator';
 
 export default class DefaultLayout extends Vue {
   mainLinks: {route: string; value: string; icon: string; id: number}[] = [
-    {route: 'Home', value: 'forside', icon: 'mdi-home', id: 1},
-    {route: 'Calender', value: 'kalender', icon: 'mdi-calendar-month', id: 2},
-    {route: 'Profile', value: 'profil', icon: 'mdi-account', id: 3},
+    {route: 'Home', value: 'Hjem', icon: 'mdi-home', id: 1},
+    {route: 'Calender', value: 'Kalender', icon: 'mdi-calendar-month', id: 2},
+    {route: 'Profile', value: 'Profil', icon: 'mdi-account', id: 3},
   ]
 }
 </script>
