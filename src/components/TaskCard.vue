@@ -11,7 +11,7 @@
       <!-- The white part of the card begins here: -->
       <v-sheet class="rounded-b-lg roundCard">
         <v-row class="ma-0">
-            <v-col class="pa-2">
+            <v-col class="pa-0" align-self="center">
               <!-- Checkmark button -->
               <v-card-actions>
                 <v-btn outlined icon @click.stop="clickCheck"><v-icon v-if="done">mdi-check</v-icon></v-btn>
@@ -19,14 +19,14 @@
             </v-col>
 
             <!-- Starttime and hours or minutes are here -->
-            <v-col class="pa-0" v-if="showTime.time">           
+            <v-col v-if="showTime.time" align-self="center">           
                 <p class="mb-0 mt-0"> {{ task.startTime }} </p>
                 <p class="mb-0" v-if="showTime.diffTime"> {{ returnTime }} </p>
             </v-col>
 
             <!-- Shows steps if there are steps -->
-            <v-col>
-                <p v-if="showSteps">
+            <v-col align-self="center">
+                <p class="mb-0" v-if="showSteps">
                     <v-icon>mdi-check-circle</v-icon>
                     <span> {{ returnSteps }} </span>
                 </p>
