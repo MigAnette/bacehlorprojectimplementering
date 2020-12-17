@@ -1,7 +1,7 @@
 <template>
   <v-row class="ma-0">
       <v-col cols="6">
-        <v-text-field label="Sæt energi" @change="changeEnergyLevel" :prefix="energyPrefix" width="100" v-model="newEnergyLevel" suffix="%" outlined type="number"></v-text-field>
+        <v-text-field v-model="newEnergyLevel" :prefix="energyPrefix" width="100" suffix="%" label="Sæt energi" @change="changeEnergyLevel" outlined type="number"></v-text-field>
       </v-col>
       <v-col>
         <v-btn outlined fab small @click="changeLevel('+')" :color="plusColor"><v-icon>mdi-plus</v-icon></v-btn>

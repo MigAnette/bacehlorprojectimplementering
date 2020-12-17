@@ -2,21 +2,44 @@
   <div>
     <v-card class="pa-2" color="#006685">
       <v-row class="ma-0">
-        <v-card-title class="white--text pa-0 pb-1 ma-0">Godmorgen</v-card-title>
+        <v-card-title class="white--text pa-0 pb-1 ma-0"
+          >Godmorgen</v-card-title
+        >
       </v-row>
       <v-row class="ma-0">
-          <energy-bar @energyIsLow="showText" :energySpend="energyExpenditure"></energy-bar>
+        <energy-bar
+          @energyIsLow="showText"
+          :energySpend="energyExpenditure"
+        ></energy-bar>
       </v-row>
       <v-row v-if="showWarning">
         <v-icon :color="colorIcon">mdi-exclamation-thick</v-icon>
         <p class="white--text">Warning take care of yourself today</p>
       </v-row>
     </v-card>
-    <task-dialog @emptyForm="emptyForm" useButton="Opret" @handleTask="postTask" :task="task" :plusBtn="true" buttonValue="mdi-plus"></task-dialog>
+    <task-dialog
+      @emptyForm="emptyForm"
+      useButton="Opret"
+      @handleTask="postTask"
+      :task="task"
+      :plusBtn="true"
+      buttonValue="mdi-plus"
+    ></task-dialog>
 
-    <task-card @clickCard="openDialog" class="my-3" v-for="task in tasks" :key="task.id" :task="task"></task-card>
-    <open-task-dialog @closeDialog="closeDialog" :task="openTask" :openDialog="dialog"></open-task-dialog>
+    <task-card
+      @clickCard="openDialog"
+      class="my-3"
+      v-for="task in tasks"
+      :key="task.id"
+      :task="task"
+    ></task-card>
 
+
+    <open-task-dialog
+      @closeDialog="closeDialog"
+      :task="openTask"
+      :openDialog="dialog"
+    ></open-task-dialog>
   </div>
 </template>
 
@@ -111,8 +134,7 @@ export default class Home extends Vue {
     return sum;
   }
 
-  today = new Date().toISOString().substr(0, 10);
-  day = new Date().getDay();
+  
 
   get weekday() {
     if (this.day == 1) {
@@ -134,6 +156,9 @@ export default class Home extends Vue {
     }
   }
 
+  today = new Date().toISOString().substr(0, 10);
+  day = new Date().getDay();
+  
   async getTasksData() {
     db.collection("tasks")
     .where("date", "in", [this.today, "daglig", this.weekday])

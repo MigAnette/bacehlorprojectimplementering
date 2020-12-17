@@ -33,7 +33,9 @@
             <v-col class="ma-0">
               <v-card-subtitle v-if="showSteps" class="ma-0 pa-0 font-italic">Trin</v-card-subtitle>
               <v-row class="ma-0 ml-5" v-for="(step, index) in task.steps" :key="index">
-                <v-btn icon small outlined :color="step.done ? 'grey' : '#006685'" @click="stepDone(index, !step.done)"><v-icon v-if="step.done">mdi-check</v-icon></v-btn>
+                <v-btn :color="step.done ? 'grey' : '#006685'" @click="stepDone(index, !step.done)" icon small outlined>
+                  <v-icon v-if="step.done">mdi-check</v-icon>
+                </v-btn>
                 <p :class="{ 'text-decoration-line-through': step.done}">{{ step.title }}</p>
               </v-row>
             </v-col>
@@ -114,7 +116,6 @@ export default class OpenTaskDialog extends Vue {
   }
 
   stepDone(index: number, done: boolean) {
-    this.$emit('stepDone', {index: index, done: !done}); // this should be changed for database update
     const steps = this.task.steps;
 
     steps[index].done = done;
