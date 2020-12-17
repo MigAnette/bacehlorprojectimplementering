@@ -28,7 +28,12 @@ export default class EnergyBar extends Vue {
   }
 
   get barColors(): { color: string; text: string } {
-    if (this.value < 0 && this.value <  25) {
+    if (this.value < 0) {
+      return {
+        color: '#DD2C00',
+        text: 'black--text',
+      };
+    }else if (this.value > 0 && this.value <  25) {
       this.$emit('energyIsLow', { color: '#DD2C00', low: true });
       return {
         color: '#DD2C00',
