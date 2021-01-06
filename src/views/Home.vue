@@ -1,12 +1,13 @@
 <template>
   <div>
-    <v-card class="pa-2" color="#006685">
+    <v-card class="pa-5" color="#006685">
       <v-row class="ma-0">
         <v-card-title class="white--text pa-0 pb-1 ma-0"
           >Godmorgen</v-card-title
         >
       </v-row>
       <v-row class="ma-0">
+        <p class="ma-0 white--text">Resterende energi for dagen</p>
         <energy-bar
           @energyIsLow="showText"
           :energySpend="energyExpenditure"
@@ -14,9 +15,20 @@
       </v-row>
       <v-row v-if="showWarning">
         <v-icon :color="colorIcon">mdi-exclamation-thick</v-icon>
-        <p class="white--text">Warning take care of yourself today</p>
+        <p class="white--text">Overvej om du skal påtage dig flere opgaver</p>
       </v-row>
     </v-card>
+
+    <h3 class="mt-4">Opgaver for dagen:</h3>
+    <task-card
+      @clickCard="openDialog"
+      class="my-5 mx-3"
+      v-for="task in tasks"
+      :key="task.id"
+      :task="task"
+    ></task-card>
+    
+    <v-row class="mx-4" justify="end">
     <task-dialog
       @emptyForm="emptyForm"
       useButton="Opret"
@@ -25,15 +37,7 @@
       :plusBtn="true"
       buttonValue="mdi-plus"
     ></task-dialog>
-
-    <task-card
-      @clickCard="openDialog"
-      class="my-3"
-      v-for="task in tasks"
-      :key="task.id"
-      :task="task"
-    ></task-card>
-
+    </v-row>
 
     <open-task-dialog
       @closeDialog="closeDialog"
