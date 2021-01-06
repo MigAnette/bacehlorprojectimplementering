@@ -1,6 +1,6 @@
 <template>
-  <v-dialog v-model="openDialog" @click:outside="closeDialog">
-    <v-card>
+  <v-dialog v-model="openDialog" @click:outside="closeDialog" height="600px">
+    <v-card height="600px">
         <v-container>
             
             <v-row class="ma-0">
@@ -11,26 +11,27 @@
 
             <v-divider color="#006685"></v-divider>
 
-            <v-row class="ma-0">
-              <p> {{ task.startTime }} - {{ task.finishTime }} </p>
-              <v-chip class="rounded-lg white--text" :color="task.category ? task.category.color : '#006685'"> {{ task.category ? task.category.name : 'Ingen' }} </v-chip>
-              <v-chip class="rounded-lg white--text" :color="returnEnergy.color"> {{ returnEnergy.level }} </v-chip>
+            <v-row class="ma-0 my-4">
+                <p> {{ task.startTime }} - {{ task.finishTime }} </p>
+                <v-chip class="rounded-lg white--text mx-3" :color="task.category ? task.category.color : '#006685'"> {{ task.category ? task.category.name : 'Ingen' }} </v-chip>
+                <v-chip class="rounded-lg white--text" :color="returnEnergy.color"> {{ returnEnergy.level }} </v-chip>
+     
             </v-row>
 
-            <v-row class="ma-0" v-if="task.reminder">
+            <v-row class="ma-0 my-4" v-if="task.reminder">
               <span>
                 <v-icon>mdi-bell</v-icon>
                 <p> {{ task.reminder }} </p>
               </span>
             </v-row>
 
-            <v-row class="ma-0" v-if="returnRepeat"> 
+            <v-row class="ma-0 my-4" v-if="returnRepeat"> 
               <v-icon>mdi-repeat</v-icon>
               <p class="mb-0" v-if="task.repeat == 'Daglig'">Daglig</p>
               <p class="mb-0" v-if="task.repeat == 'Ugentlig'">Ugentlig</p>
             </v-row>
 
-            <v-col class="ma-0">
+            <v-col class="ma-0 my-4">
               <v-card-subtitle v-if="showSteps" class="ma-0 pa-0 font-italic">Trin</v-card-subtitle>
               <v-row class="ma-0 ml-5" v-for="(step, index) in task.steps" :key="index">
                 <v-btn :color="step.done ? 'grey' : '#006685'" @click="stepDone(index, !step.done)" icon small outlined>
@@ -46,7 +47,7 @@
               <p>{{ task.note }}</p>
             </v-col>
 
-            <v-row class="ma-0">
+            <v-row class="ma-0 my-4" justify="center">
               <v-btn outlined color="#006685" @click="closeDialog">Luk opgave</v-btn>
               <certainty-dialog @confirmAsk="deleteTask" yesColor="red" noColor="#006685" btnIcon="mdi-trash-can-outline" title="Slet din opgave" subTitle="Er du sikker på du vil slette?"></certainty-dialog>
             </v-row>

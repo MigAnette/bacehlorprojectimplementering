@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" @click:outside="closeDialog">
     <template v-slot:activator="{ on }">
-          <v-btn v-if="plusBtn" right bottom outlined icon elevation="2" v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
+          <v-btn v-if="plusBtn" icon elevation="3" large v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
           <v-btn v-if="updateBtn" icon v-on="on"><v-icon>{{ buttonValue }}</v-icon></v-btn>
           <a v-if="textBtn" v-on="on" class="text-decoration-underline"> {{ buttonValue }} </a>
     </template>
