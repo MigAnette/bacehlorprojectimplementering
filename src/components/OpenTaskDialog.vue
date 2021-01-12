@@ -46,6 +46,7 @@
               <v-divider></v-divider>
               <p>{{ task.note }}</p>
             </v-col>
+            
             <v-row class="ma-0 my-4" justify="center">
               <v-btn outlined color="#006685" @click="closeDialog">Luk opgave</v-btn>
               <certainty-dialog @confirmAsk="deleteTask" yesColor="red" noColor="#006685" btnIcon="mdi-trash-can-outline" title="Slet din opgave" subTitle="Er du sikker på du vil slette?"></certainty-dialog>
