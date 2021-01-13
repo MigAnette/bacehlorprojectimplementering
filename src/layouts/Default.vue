@@ -23,7 +23,8 @@ export default class DefaultLayout extends Vue {
   mainLinks: {route: string; value: string; icon: string; id: number}[] = [
     {route: 'Home', value: 'Hjem', icon: 'mdi-home', id: 1},
     {route: 'Calender', value: 'Kalender', icon: 'mdi-calendar-month', id: 2},
-    {route: 'Profile', value: 'Profil', icon: 'mdi-account', id: 3},
+    {route: 'Goal', value: 'Mål', icon: 'mdi-trophy', id: 3},
+    {route: 'Profile', value: 'Profil', icon: 'mdi-account', id: 4},
   ]
 }
 </script>

@@ -37,7 +37,7 @@
                 <v-btn :color="step.done ? 'grey' : '#006685'" @click="stepDone(index, !step.done)" icon small outlined>
                   <v-icon v-if="step.done">mdi-check</v-icon>
                 </v-btn>
-                <p :class="{ 'text-decoration-line-through': step.done}">{{ step.title }}</p>
+                <p class="ml-2" :class="{ 'text-decoration-line-through': step.done}">{{ step.title }}</p>
               </v-row>
             </v-col>
 
@@ -46,7 +46,7 @@
               <v-divider></v-divider>
               <p>{{ task.note }}</p>
             </v-col>
-
+            
             <v-row class="ma-0 my-4" justify="center">
               <v-btn outlined color="#006685" @click="closeDialog">Luk opgave</v-btn>
               <certainty-dialog @confirmAsk="deleteTask" yesColor="red" noColor="#006685" btnIcon="mdi-trash-can-outline" title="Slet din opgave" subTitle="Er du sikker på du vil slette?"></certainty-dialog>

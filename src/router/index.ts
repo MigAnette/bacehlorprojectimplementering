@@ -15,6 +15,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/Calender.vue'),
   },
   {
+    path: '/maal',
+    name: 'Goal',
+    component: () => import('@/views/Goal.vue'),
+  },
+  {
     path: '/profil',
     name: 'Profile',
     component: () => import('@/views/Profile.vue'),
