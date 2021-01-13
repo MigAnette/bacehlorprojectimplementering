@@ -22,4 +22,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-src/firebase/init.js
+src/firebase/init.ts
